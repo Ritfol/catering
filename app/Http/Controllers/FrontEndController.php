@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     public function index()
     {
         return view('homepage.homepage');

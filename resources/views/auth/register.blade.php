@@ -15,7 +15,9 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <form action="" method="POST" role="form">
+                        <form action="{{ route('register') }}" method="POST" role="form">
+
+                            {{ csrf_field() }}
 
                             <div class="form-group">
                                 <label for="">Name</label>

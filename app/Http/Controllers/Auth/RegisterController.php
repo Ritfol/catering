@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Customer;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -49,7 +50,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'phone_nubmer' => 'string|required|unique:users',
+            'email' => '|email|max:255',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -62,10 +64,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        Customer::create([
+            ''
+        ]);
+
         return User::create([
             'name' => $data['name'],
+            'phone_number' => $data['phone_number'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'role' => 'customer'
         ]);
+
     }
 }
