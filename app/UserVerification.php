@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class UserVerification extends Model
 {
-    protected $fillable = ['user_id' , 'location' , 'description' , 'enabled'];
+    protected $fillable = [ 'user_id' , 'token'];
 
     public function user()
     {

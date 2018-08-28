@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function verifyUser()
+    {
+        return $this->hasOne(UserVerification::class);
+    }
+
     public function admins()
     {
         return $this->hasMany(Admin::class);

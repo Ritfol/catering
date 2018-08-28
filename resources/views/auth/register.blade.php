@@ -19,33 +19,47 @@
 
                             {{ csrf_field() }}
 
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
                             <div class="form-group">
-                                <label for="">Name</label>
-                                <input type="text" class="form-control" name="name" required>
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
                             </div>
                             <div class="form-group">
-                                <label for="">Phone number</label>
-                                <input type="text" class="form-control" name="phone" required>
+                                <label for="phone_number">Phone number</label>
+                                <input type="text" class="form-control" name="phone_number" value="{{ old('phone_number') }}" required>
                             </div>
                             <div class="form-group">
-                                <label for="">Email</label>
-                                <input type="text" class="form-control" name="email">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="email" value="{{ old('email') }}" required>
                             </div>
                             <div class="form-group">
-                                <label for="">Password</label>
+                                <label for="password">Password</label>
                                 <input type="password" class="form-control" name="password" required>
                             </div>
                             <div class="form-group">
-                                <label for="">Location</label>
+                                <label for="password_confirmation">Confirm password</label>
+                                <input type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Location</label>
                                 <select name="location"  class="form-control" required="required">
-                                    <option value="null">--Select One--</option>
-                                    <option value="">Posta</option>
-                                    <option value="">University Area(Savei, Ardhi, UDSM)</option>
+                                    <option value="">--Select One--</option>
+                                    <option value="posta">Posta</option>
+                                    <option value="ud">University Area(Savei, Ardhi, UDSM)</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="">Location Description</label>
-                                <textarea name="description"  class="form-control" rows="3" required="required"></textarea>
+                                <label for="description">Location Description</label>
+                                <textarea name="description"  class="form-control" rows="3" required="required">{{ old('description') }}</textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-block">Submit</button>
