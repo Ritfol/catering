@@ -6,32 +6,34 @@
 
         <div class="card" style="padding: 30px;" >
 
-            <form action="" method="POST" role="form">
+            <form action="{{ route('admin.addMeal') }}" method="POST" role="form" enctype="multipart/form-data">
+                {{ csrf_field() }}
+
                 <legend><b>Add images for tomorrow's meals</b></legend>
                 <br>
                 <div class="form-group">
-                    <label for="">Breakfast</label>
-                    <input type="text" placeholder="Name of meal" required>
-                    <input type="file" name="image" required>
+                    <label for="breakfast">Breakfast</label>
+                    <input type="text" name="breakfast_name" placeholder="Name of meal" required>
+                    <input type="file" name="breakfast" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="">Lunch</label>
-                    <input type="text" placeholder="Name of meal" required>
-                    <input type="file" name="image2" required>
+                    <label for="lunch">Lunch</label>
+                    <input type="text" name="lunch_name" placeholder="Name of meal" required>
+                    <input type="file" name="lunch" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="">Dinner</label>
-                    <input type="text" placeholder="Name of meal" required>
-                    <input type="file" name="image3" required>
+                    <label for="dinner">Dinner</label>
+                    <input type="text" name="dinner_name" placeholder="Name of meal" required>
+                    <input type="file" name="dinner" required>
                 </div>
 
 
                 <div class="form-group">
-                    <label for="">Drink</label>
-                    <input type="text" placeholder="Name of drink" required>
-                    <input type="file" name="image4" required>
+                    <label for="drink">Drink</label>
+                    <input type="text" name="drink_name" placeholder="Name of drink" required>
+                    <input type="file" name="drink" required>
                 </div>
 
 

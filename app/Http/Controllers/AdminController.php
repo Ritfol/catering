@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Meal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -31,8 +34,81 @@ class AdminController extends Controller
         return view('admin.users');
     }
 
-    public function addMeal()
+    public function toAddMeal()
     {
         return view('admin.add-meal');
     }
+
+    public function addMeal(Request $request)
+    {
+        Meal::create([
+            'breakfast_name' => $request->breakfast_name,
+            'breakfast' => $this->storeBreakfast($request),
+            'lunch_name' => $request->lunch_name,
+            'lunch' => $this->storeLunch($request),
+            'dinner_name' => $request->dinner_name,
+            'dinner' => $this->storeDinner($request),
+            'drink_name' => $request->dinner_name,
+            'drink' => $this->storeDrink($request)
+        ]);
+
+        return redirect('/');
+    }
+
+    public function storeBreakfast($request)
+    {
+        $path = null;
+
+        if($request->hasFile('breakfast'))
+        {
+            $image = $request->file('breakfast');
+            $ext = $image->getClientOriginalExtension();
+            $path = $image->storeAs('Meals/Breakfast' , $request->breakfast_name.'.'.$ext);
+        }
+
+        return $path;
+    }
+
+    public function storeLunch($request)
+    {
+        $path = null;
+
+        if($request->hasFile('lunch'))
+        {
+            $image = $request->file('lunch');
+            $ext = $image->getClientOriginalExtension();
+            $path = $image->storeAs('Meals/Lunch' , $request->lunch_name.'.'.$ext);
+        }
+
+        return $path;
+    }
+
+    public function storeDinner($request)
+    {
+        $path = null;
+
+        if($request->hasFile('dinner'))
+        {
+            $image = $request->file('dinner');
+            $ext = $image->getClientOriginalExtension();
+            $path = $image->storeAs('Meals/Dinner' , $request->dinner_name.'.'.$ext);
+        }
+
+        return $path;
+    }
+
+    public function storeDrink($request)
+    {
+        $path = null;
+
+        if($request->hasFile('drink'))
+        {
+            $image = $request->file('drink');
+            $ext = $image->getClientOriginalExtension();
+            $path = $image->storeAs('Meals/Drink' , $request->drink_name.'.'.$ext);
+        }
+
+        return $path;
+    }
+
 }

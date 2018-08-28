@@ -60,4 +60,15 @@ class LoginController extends Controller
         return redirect()->intended($this->redirectPath());
     }
 
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect()->route('index');
+    }
+
 }

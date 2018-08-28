@@ -10,13 +10,13 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Auth::routes();
 
 //Front end route
 Route::get('/' , 'FrontEndController@index')->name('index');
 
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix'=>'customer'] , function ()
 {
@@ -29,5 +29,7 @@ Route::group(['prefix'=>'admin'] , function (){
     Route::get('new-orders' , 'AdminController@newOrders')->name('admin.newOrders');
     Route::get('past-orders' , 'AdminController@pastOrders')->name('admin.pastOrders');
     Route::get('users' , 'AdminController@users')->name('admin.users');
-    Route::get('add-meal' , 'AdminController@addMeal')->name('admin.addMeal');
+    Route::get('add-meal' , 'AdminController@toAddMeal')->name('admin.toAddMeal');
+    Route::post('add-meal' , 'AdminController@addMeal')->name('admin.addMeal');
+//    Route::get('logout' , 'AdminController@logout')->name('admin.logout');
 });

@@ -15,9 +15,13 @@ class CreateMealsTable extends Migration
     {
         Schema::create('meals', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('breakfast_name');
             $table->string('breakfast');
+            $table->string('lunch_name');
             $table->string('lunch');
+            $table->string('dinner_name');
             $table->string('dinner');
+            $table->string('drink_name');
             $table->string('drink');
             $table->timestamps();
         });

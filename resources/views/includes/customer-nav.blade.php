@@ -13,7 +13,7 @@
                 <a class="nav-link" href="past-orders.html">View past orders</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">Log out</a>
+                <a class="nav-link" href="{{ route('logout') }}">Log out</a>
             </li>
         </ul>
 

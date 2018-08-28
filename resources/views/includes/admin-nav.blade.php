@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="dashboard.html">Hawa's Delight</a>
+    <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Hawa's Delight</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -19,10 +19,10 @@
                 <a class="nav-link" href="{{ route('admin.users') }}">View all users</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.addMeal') }}">Add meals</a>
+                <a class="nav-link" href="{{ route('admin.toAddMeal') }}">Add meals</a>
             </li>
             <li class="nav-item pull-right">
-                <a class="nav-link" href="#">Log out</a>
+                <a class="nav-link" href="{{ route('logout') }}">Log out</a>
             </li>
         </ul>
     </div>

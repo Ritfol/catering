@@ -13,7 +13,7 @@ class AdminTableSeeder extends Seeder
     {
         $user = \App\User::create([
             'name' => 'Admin',
-            'phone_number' => 12345,
+            'phone_number' => 123456,
             'email' => 'admin@admin.com',
             'password' => bcrypt('123456'),
             'role' => 'admin',
