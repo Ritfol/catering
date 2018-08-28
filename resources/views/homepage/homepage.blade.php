@@ -29,17 +29,31 @@
                                 <div class="menu_toggle"><i class="flaticon-food-3"></i>
                                     <span class="menu_name">menu</span>
                                 </div>
-                                <div class="collapse navbar-collapse cat_menu">
-                                    <div class="close_btn"><i class="flaticon-tool-1"></i></div>
-                                    <div class="menu_overlay"></div>
-                                    <ul class="nav navbar-nav pull-right">
+                                @if( !auth()->check())
+                                    <div class="collapse navbar-collapse cat_menu">
+                                        <div class="close_btn"><i class="flaticon-tool-1"></i></div>
+                                        <div class="menu_overlay"></div>
+                                        <ul class="nav navbar-nav pull-right">
 
-                                        <li><a href="{{ route('register') }}">Sign Up</a>
-                                        </li>
-                                        <li><a href="{{ route('login') }}">Log In</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                            <li><a href="{{ route('register') }}">Sign Up</a>
+                                            </li>
+                                            <li><a href="{{ route('login') }}">Log In</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @else
+                                    <div class="collapse navbar-collapse cat_menu">
+                                        <div class="close_btn"><i class="flaticon-tool-1"></i></div>
+                                        <div class="menu_overlay"></div>
+                                        <ul class="nav navbar-nav pull-right">
+
+                                            <li><a href="{{ route(auth()->user()->role.'.'.'dashboard') }}">Dashboard</a>
+                                            </li>
+                                            <li><a href="{{ route('logout') }}">Logout</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endif
                             </nav>
                             <div class="cat_menus_img wow slideleft">
                                 <img src="{{ asset('images/chef.png') }}" alt="" class="img-responsive" />

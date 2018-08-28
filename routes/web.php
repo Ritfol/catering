@@ -16,8 +16,6 @@ Auth::routes();
 //Front end route
 Route::get('/' , 'FrontEndController@index')->name('index');
 
-//Route::get('/home', 'HomeController@index');
-
 Route::group(['prefix'=>'customer'] , function ()
 {
     Route::get('verify/{token}', 'Auth\RegisterController@verifyUser')->name('customer.verify');

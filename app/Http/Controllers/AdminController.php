@@ -41,6 +41,8 @@ class AdminController extends Controller
 
     public function addMeal(Request $request)
     {
+        //dd($this->storeDrink($request));
+
         Meal::create([
             'breakfast_name' => $request->breakfast_name,
             'breakfast' => $this->storeBreakfast($request),
@@ -52,7 +54,7 @@ class AdminController extends Controller
             'drink' => $this->storeDrink($request)
         ]);
 
-        return redirect('/');
+        return redirect()->back()->withInput();
     }
 
     public function storeBreakfast($request)
@@ -63,10 +65,10 @@ class AdminController extends Controller
         {
             $image = $request->file('breakfast');
             $ext = $image->getClientOriginalExtension();
-            $path = $image->storeAs('Meals/Breakfast' , $request->breakfast_name.'.'.$ext);
+            $path = $image->storeAs('Meals' , $request->breakfast_name.'.'.$ext);
         }
 
-        return $path;
+        return asset($path);
     }
 
     public function storeLunch($request)
@@ -77,10 +79,10 @@ class AdminController extends Controller
         {
             $image = $request->file('lunch');
             $ext = $image->getClientOriginalExtension();
-            $path = $image->storeAs('Meals/Lunch' , $request->lunch_name.'.'.$ext);
+            $path = $image->storeAs('Meals' , $request->lunch_name.'.'.$ext);
         }
 
-        return $path;
+        return asset($path);
     }
 
     public function storeDinner($request)
@@ -91,10 +93,10 @@ class AdminController extends Controller
         {
             $image = $request->file('dinner');
             $ext = $image->getClientOriginalExtension();
-            $path = $image->storeAs('Meals/Dinner' , $request->dinner_name.'.'.$ext);
+            $path = $image->storeAs('Meals' , $request->dinner_name.'.'.$ext);
         }
 
-        return $path;
+        return asset($path);
     }
 
     public function storeDrink($request)
@@ -105,10 +107,10 @@ class AdminController extends Controller
         {
             $image = $request->file('drink');
             $ext = $image->getClientOriginalExtension();
-            $path = $image->storeAs('Meals/Drink' , $request->drink_name.'.'.$ext);
+            $path = $image->storeAs('Meals' , $request->drink_name.'.'.$ext);
         }
 
-        return $path;
+        return asset($path);
     }
 
 }
