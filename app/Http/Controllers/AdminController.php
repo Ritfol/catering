@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Meal;
+use App\Order;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -23,12 +26,12 @@ class AdminController extends Controller
 
     public function newOrders()
     {
-        return view('admin.new-orders');
+        return view('admin.new-orders')->with('orders' , Order::where('date' , Carbon::now()->toDateString())->get());
     }
 
     public function pastOrders()
     {
-        return view('admin.past-orders');
+        return view('admin.past-orders')->with('orders' , Order::where('date' , '<' , Carbon::now()->toDateString())->get());
     }
 
     public function users()
@@ -36,6 +39,22 @@ class AdminController extends Controller
         $customers = Customer::all();
 
         return view('admin.users')->with('customers' , $customers);
+    }
+
+    public function deliver( Order $order)
+    {
+        if($order->status)
+        {
+            $order->status = false;
+            $order->save();
+        }
+        else
+        {
+            $order->status = true;
+            $order->save();
+        }
+
+        return redirect()->back();
     }
 
     public function toAddMeal()
@@ -95,7 +114,7 @@ class AdminController extends Controller
         {
             $image = $request->file('breakfast');
             $ext = $image->getClientOriginalExtension();
-            $path = $image->storeAs('Meals' , $request->breakfast_name.'.'.$ext);
+            $path = $image->storeAs('Meals' , 'breakfast'.$ext);
         }
 
         $image->move(public_path('Meals') , storage_path($path));
@@ -111,7 +130,7 @@ class AdminController extends Controller
         {
             $image = $request->file('lunch');
             $ext = $image->getClientOriginalExtension();
-            $path = $image->storeAs('Meals' , $request->lunch_name.'.'.$ext);
+            $path = $image->storeAs('Meals' , 'lunch'.$ext);
         }
 
         $image->move(public_path('Meals') , storage_path($path));
@@ -127,7 +146,7 @@ class AdminController extends Controller
         {
             $image = $request->file('dinner');
             $ext = $image->getClientOriginalExtension();
-            $path = $image->storeAs('Meals' , $request->dinner_name.'.'.$ext);
+            $path = $image->storeAs('Meals' , 'lunch'.$ext);
         }
 
         $image->move(public_path('Meals') , storage_path($path));
@@ -143,12 +162,21 @@ class AdminController extends Controller
         {
             $image = $request->file('drink');
             $ext = $image->getClientOriginalExtension();
-            $path = $image->storeAs('Meals' , $request->drink_name.'.'.$ext);
+            $path = $image->storeAs('Meals' , 'drink'.$ext);
         }
 
         $image->move(public_path('Meals') , storage_path($path));
 
         return $path;
+    }
+
+    public function deleteUser(User $user)
+    {
+        Customer::where('user_id' , $user->id)->delete();
+        Order::where('user_id' , $user->id)->delete();
+        $user->delete();
+
+         return redirect()->route('admin.users');
     }
 
 }

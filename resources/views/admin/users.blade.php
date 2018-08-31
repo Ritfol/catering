@@ -7,7 +7,6 @@
             <table class="table">
                 <thead class="thead-dark">
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Phone number</th>
                     <th scope="col">Email</th>
@@ -20,7 +19,6 @@
                 <tbody>
                 @foreach( $customers as $customer)
                 <tr>
-                    <th scope="row">{{ $customer->id }}</th>
                     <td>{{ $customer->user->name }}</td>
                     <td>{{ $customer->user->phone_number }}</td>
                     <td>{{ $customer->user->email }}</td>
@@ -31,7 +29,7 @@
                     @else
                         <td><button type="button" class="btn btn-outline-warning">Disabled</button></td>
                     @endif
-                    <td><button type="button" class="btn btn-outline-danger">Delete?</button></td>
+                    <td><a href="{{ route('admin.delete-user' , $customer->user) }}"><button type="button" class="btn btn-outline-danger">Delete?</button></a></td>
                 </tr>
                 @endforeach
                 </tbody>

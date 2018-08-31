@@ -17,41 +17,41 @@
                             </thead>
 
                             <tbody>
-                            @if($order->breakfast)
+                            @if(array_key_exists('breakfast_checkbox' , $order))
                                 <tr>
                                     <td>Breakfast</td>
                                     <td>{{ $meal->breakfast_name }}</td>
                                     <td>{{ $meal->breakfast_price }}</td>
                                 </tr>
                             @endif
-                            @if($order->lunch)
+                            @if(array_key_exists('lunch_checkbox' , $order))
                                 <tr>
                                     <td>Lunch</td>
                                     <td>{{ $meal->lunch_name }}</td>
                                     <td>{{ $meal->lunch_price }}</td>
                                 </tr>
                             @endif
-                            @if($order->dinner)
+                            @if(array_key_exists('dinner_checkbox' , $order))
                                 <tr>
                                     <td>Dinner</td>
                                     <td>{{ $meal->dinner_name }}</td>
                                     <td>{{ $meal->dinner_price }}</td>
                                 </tr>
                             @endif
-                            @if($order->drink)
+                            @if(array_key_exists('drink_checkbox' , $order))
                                 <tr>
                                     <td>Drink</td>
                                     <td>{{ $meal->drink_name }}</td>
                                     <td>{{ $meal->drink_price }}</td>
                                 </tr>
-                            <p><b>Total:</b> {{ $order->price }}/=</p>
                             @endif
+                            <p><b>Total:</b> {{ $price }}/=</p>
                             </tbody>
 
                         </table>
                     </div>
 
-                    <a href="{{ route('customer.dashboard')}}"><button type="submit" class="btn btn-primary btn-block">Submit</button></a>
+                    <a href="{{ route('customer.order' , [ 'order' => $order , 'price' => $price]) }}"><button type="submit" class="btn btn-primary btn-block">Submit</button></a>
                 </div>
             </div>
 

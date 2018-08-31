@@ -7,12 +7,12 @@
 
         <br>
         <h2 style="font-weight: bold;text-align: center;">Tomorrow's food</h2><br>
-        <form action="{{ route('customer.order') }}" enctype="multipart/form-data" method="post">
+        <form action="{{ route('customer.toConfirm') }}" enctype="multipart/form-data" method="post">
             {{ csrf_field() }}
 
             <div class="d-flex justify-content-around row">
                 <div class="p-1">
-                    <a href=""><img src="{{ url($meal->breakfast) }}" width="200px" height="200px"></a>
+                    <img src="{{ url($meal->breakfast) }}" width="200px" height="200px">
                     <div>
                         <label for="breakfast_checkbox">Breakfast</label>
                         <input type="checkbox" name="breakfast_checkbox">
@@ -20,21 +20,21 @@
 
                 </div>
                 <div class="p-1">
-                    <a href=""><img src="{{ url($meal->lunch) }}" width="200px" height="200px"></a>
+                    <img src="{{ url($meal->lunch) }}" width="200px" height="200px">
                     <div>
                         <label for="lunch_checkbox">Lunch</label>
                         <input type="checkbox" name="lunch_checkbox">
                     </div>
                 </div>
                 <div class="p-1">
-                    <a href=""><img src="{{ url($meal->dinner) }}" width="200px" height="200px"></a>
+                    <img src="{{ url($meal->dinner) }}" width="200px" height="200px">
                     <div>
                         <label for="dinner_checkbox">Dinner</label>
                         <input type="checkbox" name="dinner_checkbox">
                     </div>
                 </div>
                 <div class="p-1">
-                    <a href=""><img src="{{ url($meal->drink) }}" width="200px" height="200px"></a>
+                    <img src="{{ url($meal->drink) }}" width="200px" height="200px">
                     <div>
                         <label for="drink_checkbox">Drink</label>
                         <input type="checkbox" name="drink_checkbox">

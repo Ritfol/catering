@@ -25,27 +25,30 @@ class CustomerController extends Controller
         return view('customer.dashboard')->with('meal' , $meal);
     }
 
-    public function order(Request $request)
+    public function order( Request $request)
     {
-        $order = Order::create([
+        //dd($request->price);
+
+        Order::create([
             'user_id' => auth()->user()->id,
-            'breakfast' => $request->breakfast_checkbox ? true : false,
-            'lunch' => $request->lunch_checkbox ? true : false,
-            'dinner' => $request->dinner_checkbox ? true : false,
-            'drink' => $request->drink_checkbox ? true : false,
-            'price' => $this->totalPrice($request , Meal::first()),
+            'breakfast' => array_key_exists('breakfast_checkbox' , $request->order) ? true : false,
+            'lunch' => array_key_exists('lunch_checkbox' , $request->order) ? true : false,
+            'dinner' => array_key_exists('dinner_checkbox' , $request->order) ? true : false,
+            'drink' => array_key_exists('drink_checkbox' , $request->order) ? true : false,
+            'price' => $request->price,
             'date' => Carbon::now()->toDateString(),
             'status' => 0
         ]);
 
-        return redirect()->route('customer.toConfirm' , $order);
+        return redirect()->route('customer.dashboard');
     }
 
-    public function toConfirm(Order $order)
+    public function toConfirm(Request $request)
     {
         $meal = Meal::first();
+        $price = $this->totalPrice($request , $meal);
 
-        return view('customer.confirm-order')->with(['order' => $order , 'meal' => $meal]);
+        return view('customer.confirm-order')->with(['order' => $request->except('_token') , 'meal' => $meal , 'price' => $price]);
     }
 
     public function pastOrders()

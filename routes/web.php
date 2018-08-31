@@ -20,8 +20,8 @@ Route::group(['prefix'=>'customer'] , function ()
 {
     Route::get('verify/{token}', 'Auth\RegisterController@verifyUser')->name('customer.verify');
     Route::get('dashboard' , 'CustomerController@dashboard')->name('customer.dashboard');
-    Route::post('toOrder' , 'CustomerController@order')->name('customer.order');
-    Route::get('order/toConfirm/{order}' , 'CustomerController@toConfirm')->name('customer.toConfirm');
+    Route::get('toOrder/' , 'CustomerController@order')->name('customer.order');
+    Route::post('order/toConfirm' , 'CustomerController@toConfirm')->name('customer.toConfirm');
     Route::get('pastOrders' , 'CustomerController@pastOrders')->name('customer.pastOrders');
 });
 
@@ -32,5 +32,7 @@ Route::group(['prefix'=>'admin'] , function (){
     Route::get('users' , 'AdminController@users')->name('admin.users');
     Route::get('add-meal' , 'AdminController@toAddMeal')->name('admin.toAddMeal');
     Route::post('add-meal' , 'AdminController@addMeal')->name('admin.addMeal');
+    Route::get('/deliver/{order}' , 'AdminController@deliver')->name('admin.deliver');
+    Route::get('/delete/user/{user}' , 'AdminController@deleteUser')->name('admin.delete-user');
 //    Route::get('logout' , 'AdminController@logout')->name('admin.logout');
 });

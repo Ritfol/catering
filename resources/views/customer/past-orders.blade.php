@@ -21,7 +21,7 @@
                             <tbody>
                             @foreach( $orders as $order)
                             <tr>
-                                <td>{{ $order->getNumberOfMeals($order) }}</td>
+                                <td><b>{{ $order->getNumberOfMeals($order) }}</b> <i>({{ $order->getMealsBought($order) }})</i></td>
                                 <td>{{ $order->price }}</td>
                                 <td>{{ $order->date }}</td>
                             </tr>
