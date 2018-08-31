@@ -13,9 +13,9 @@ class CustomerTableSeeder extends Seeder
     {
         $user = \App\User::create([
             'name' => 'Zakayo Haule',
-            'phone_number' => '0687738624',
+            'phone_number' => '112233',
             'email' => 'z@z.com',
-            'password' => bcrypt('123456'),
+            'password' => bcrypt('112233'),
             'role' => 'customer',
             'verified' => 1
         ]);
