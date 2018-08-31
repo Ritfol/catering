@@ -114,7 +114,7 @@ class AdminController extends Controller
         {
             $image = $request->file('breakfast');
             $ext = $image->getClientOriginalExtension();
-            $path = $image->storeAs('Meals' , 'breakfast'.$ext);
+            $path = $image->storeAs('Meals' , 'breakfast.'.$ext);
         }
 
         $image->move(public_path('Meals') , storage_path($path));
@@ -130,7 +130,7 @@ class AdminController extends Controller
         {
             $image = $request->file('lunch');
             $ext = $image->getClientOriginalExtension();
-            $path = $image->storeAs('Meals' , 'lunch'.$ext);
+            $path = $image->storeAs('Meals' , 'lunch.'.$ext);
         }
 
         $image->move(public_path('Meals') , storage_path($path));
@@ -146,7 +146,7 @@ class AdminController extends Controller
         {
             $image = $request->file('dinner');
             $ext = $image->getClientOriginalExtension();
-            $path = $image->storeAs('Meals' , 'lunch'.$ext);
+            $path = $image->storeAs('Meals' , 'dinner.'.$ext);
         }
 
         $image->move(public_path('Meals') , storage_path($path));
@@ -162,7 +162,7 @@ class AdminController extends Controller
         {
             $image = $request->file('drink');
             $ext = $image->getClientOriginalExtension();
-            $path = $image->storeAs('Meals' , 'drink'.$ext);
+            $path = $image->storeAs('Meals' , 'drink.'.$ext);
         }
 
         $image->move(public_path('Meals') , storage_path($path));
