@@ -20,7 +20,6 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        //dd(url(Meal::first()->breakfast));
         return view('admin.dashboard');
     }
 
