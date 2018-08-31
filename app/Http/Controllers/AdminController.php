@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Meal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,7 @@ class AdminController extends Controller
 
     public function dashboard()
     {
+        //dd(url(Meal::first()->breakfast));
         return view('admin.dashboard');
     }
 
@@ -31,7 +33,9 @@ class AdminController extends Controller
 
     public function users()
     {
-        return view('admin.users');
+        $customers = Customer::all();
+
+        return view('admin.users')->with('customers' , $customers);
     }
 
     public function toAddMeal()
@@ -41,20 +45,46 @@ class AdminController extends Controller
 
     public function addMeal(Request $request)
     {
-        //dd($this->storeDrink($request));
+        //dd($request->all());
 
-        Meal::create([
-            'breakfast_name' => $request->breakfast_name,
-            'breakfast' => $this->storeBreakfast($request),
-            'lunch_name' => $request->lunch_name,
-            'lunch' => $this->storeLunch($request),
-            'dinner_name' => $request->dinner_name,
-            'dinner' => $this->storeDinner($request),
-            'drink_name' => $request->dinner_name,
-            'drink' => $this->storeDrink($request)
-        ]);
+        if(count(Meal::all()) == 0)
+        {
+            Meal::create([
+                'breakfast_name' => $request->breakfast_name,
+                'breakfast' => $this->storeBreakfast($request),
+                'breakfast_price' => $request->breakfast_price,
+                'lunch_name' => $request->lunch_name,
+                'lunch' => $this->storeLunch($request),
+                'lunch_price' => $request->lunch_price,
+                'dinner_name' => $request->dinner_name,
+                'dinner' => $this->storeDinner($request),
+                'dinner_price' => $request->dinner_price,
+                'drink_name' => $request->dinner_name,
+                'drink' => $this->storeDrink($request),
+                'drink_price' => $request->drink_price
+            ]);
+        }
+        else
+        {
+            $meal = Meal::first();
 
-        return redirect()->back()->withInput();
+                $meal->breakfast_name = $request->breakfast_name;
+                $meal->breakfast = $this->storeBreakfast($request);
+                $meal->breakfast_price = $request->breakfast_price;
+                $meal->lunch_name = $request->lunch_name;
+                $meal->lunch = $this->storeLunch($request);
+                $meal->lunch_price = $request->lunch_price;
+                $meal->dinner_name = $request->dinner_name;
+                $meal->dinner = $this->storeDinner($request);
+                $meal->dinner_price = $request->dinner_price;
+                $meal->drink_name = $request->dinner_name;
+                $meal->drink = $this->storeDrink($request);
+                $meal->drink_price = $request->drink_price;
+                $meal->save();
+        }
+
+
+        return redirect()->route('admin.dashboard');
     }
 
     public function storeBreakfast($request)
@@ -68,7 +98,9 @@ class AdminController extends Controller
             $path = $image->storeAs('Meals' , $request->breakfast_name.'.'.$ext);
         }
 
-        return asset($path);
+        $image->move(public_path('Meals') , storage_path($path));
+
+        return $path;
     }
 
     public function storeLunch($request)
@@ -82,7 +114,9 @@ class AdminController extends Controller
             $path = $image->storeAs('Meals' , $request->lunch_name.'.'.$ext);
         }
 
-        return asset($path);
+        $image->move(public_path('Meals') , storage_path($path));
+
+        return $path;
     }
 
     public function storeDinner($request)
@@ -96,7 +130,9 @@ class AdminController extends Controller
             $path = $image->storeAs('Meals' , $request->dinner_name.'.'.$ext);
         }
 
-        return asset($path);
+        $image->move(public_path('Meals') , storage_path($path));
+
+        return $path;
     }
 
     public function storeDrink($request)
@@ -110,7 +146,9 @@ class AdminController extends Controller
             $path = $image->storeAs('Meals' , $request->drink_name.'.'.$ext);
         }
 
-        return asset($path);
+        $image->move(public_path('Meals') , storage_path($path));
+
+        return $path;
     }
 
 }

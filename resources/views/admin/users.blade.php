@@ -18,36 +18,22 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach( $customers as $customer)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>07236457</td>
-                    <td>mark@gmail.com</td>
-                    <td>Posta</td>
-                    <td>PPF Tower,Floor 8</td>
-                    <td><button type="button" class="btn btn-outline-success">Enabled</button></td>
+                    <th scope="row">{{ $customer->id }}</th>
+                    <td>{{ $customer->user->name }}</td>
+                    <td>{{ $customer->user->phone_number }}</td>
+                    <td>{{ $customer->user->email }}</td>
+                    <td>{{ $customer->location }}</td>
+                    <td>{{ $customer->description }}</td>
+                    @if($customer->enabled)
+                        <td><button type="button" class="btn btn-outline-success">Enabled</button></td>
+                    @else
+                        <td><button type="button" class="btn btn-outline-warning">Disabled</button></td>
+                    @endif
                     <td><button type="button" class="btn btn-outline-danger">Delete?</button></td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>07236457</td>
-                    <td>jacob@gmail.com</td>
-                    <td>Posta</td>
-                    <td>PPF Tower,Floor 7</td>
-                    <td><button type="button" class="btn btn-outline-warning">Disabled</button></td>
-                    <td><button type="button" class="btn btn-outline-danger">Delete?</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>07236457</td>
-                    <td>larry@gmail.com</td>
-                    <td>Posta</td>
-                    <td>PPF Tower,Floor 9</td>
-                    <td><button type="button" class="btn btn-outline-success">Enabled</button></td>
-                    <td><button type="button" class="btn btn-outline-danger">Delete?</button></td>
-                </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

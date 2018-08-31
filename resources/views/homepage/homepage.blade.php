@@ -92,14 +92,14 @@
                     <div class="cat_about_content wow frombottom">
                         <div class="col-lg-6 col-md-6">
                             <div class="cat_dish_img wow slideleft">
-                                <img src="{{ asset('images/about/1.jpg') }}" alt="" class="img-responsive" />
+                                <img src="{{ $meal->breakfast }}" alt="" class="img-responsive" />
                                 <div class="cat_dish_img_caption"></div>
                                 <div class="cat_dish_name">
                                     <p class="cat_dish_title"><a href="#">Breakfast</a>
                                     </p>
                                     <div class="cat_dish_category">
                                         <ul>
-                                            <li><a href="#">Golden spring rolls</a>
+                                            <li><a href="#">{{ $meal->breakfast_name }}</a>
                                             </li>
 
                                         </ul>
@@ -110,14 +110,14 @@
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="cat_dish_img wow slideleft">
-                                <img src="{{ asset('images/about/2.jpg') }}" alt="" class="img-responsive" />
+                                <img src="{{ asset($meal->lunch) }}" alt="" class="img-responsive" />
                                 <div class="cat_dish_img_caption"></div>
                                 <div class="cat_dish_name">
                                     <p class="cat_dish_title"><a href="#">Lunch</a>
                                     </p>
                                     <div class="cat_dish_category">
                                         <ul>
-                                            <li><a href="#">Golden spring rolls</a>
+                                            <li><a href="#">{{ $meal->lunch_name }}</a>
                                             </li>
 
                                         </ul>
@@ -134,14 +134,14 @@
                     <div class="cat_about_content wow frombottom">
                         <div class="col-lg-6 col-md-6">
                             <div class="cat_dish_img wow slideleft">
-                                <img src="{{ asset('images/about/1.jpg') }}" alt="" class="img-responsive" />
+                                <img src="{{ asset($meal->dinner) }}" alt="" class="img-responsive" />
                                 <div class="cat_dish_img_caption"></div>
                                 <div class="cat_dish_name">
                                     <p class="cat_dish_title"><a href="#">Dinner</a>
                                     </p>
                                     <div class="cat_dish_category">
                                         <ul>
-                                            <li><a href="#">Golden spring rolls</a>
+                                            <li><a href="#">{{ $meal->dinner_name }}</a>
                                             </li>
 
                                         </ul>
@@ -152,14 +152,14 @@
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="cat_dish_img wow slideleft">
-                                <img src="{{ asset('images/about/2.jpg') }}" alt="" class="img-responsive" />
+                                <img src="{{ asset($meal->drink) }}" alt="" class="img-responsive" />
                                 <div class="cat_dish_img_caption"></div>
                                 <div class="cat_dish_name">
                                     <p class="cat_dish_title"><a href="#">Drink (Optional for lunch and dinner)</a>
                                     </p>
                                     <div class="cat_dish_category">
                                         <ul>
-                                            <li><a href="#">Golden spring rolls</a>
+                                            <li><a href="#">{{ $meal->drink_name }}</a>
                                             </li>
 
                                         </ul>

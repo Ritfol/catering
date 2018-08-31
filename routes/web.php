@@ -20,6 +20,9 @@ Route::group(['prefix'=>'customer'] , function ()
 {
     Route::get('verify/{token}', 'Auth\RegisterController@verifyUser')->name('customer.verify');
     Route::get('dashboard' , 'CustomerController@dashboard')->name('customer.dashboard');
+    Route::post('toOrder' , 'CustomerController@order')->name('customer.order');
+    Route::get('order/toConfirm/{order}' , 'CustomerController@toConfirm')->name('customer.toConfirm');
+    Route::get('pastOrders' , 'CustomerController@pastOrders')->name('customer.pastOrders');
 });
 
 Route::group(['prefix'=>'admin'] , function (){

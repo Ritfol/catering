@@ -8,6 +8,7 @@ use App\User;
 use App\UserVerification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Symfony\Component\CssSelector\CssSelectorConverter;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -115,6 +116,11 @@ class RegisterController extends Controller
             if (!$user->verified)
             {
                 $user->verified = true;
+
+                $customer = Customer::where('user_id' , $user->id)->first();
+                $customer->enabled = true;
+
+                $customer->save();
                 $user->save();
                 $status = 'Your email is now verified, you can now login';
             }

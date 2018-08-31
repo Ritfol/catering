@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Meal;
 use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
@@ -13,6 +14,8 @@ class FrontEndController extends Controller
 
     public function index()
     {
-        return view('homepage.homepage');
+        $meal = Meal::first();
+
+        return view('homepage.homepage')->with('meal' , $meal);
     }
 }

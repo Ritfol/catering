@@ -15,9 +15,14 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('meal_id');
             $table->integer('user_id');
+            $table->boolean('breakfast');
+            $table->boolean('lunch');
+            $table->boolean('dinner');
+            $table->boolean('drink');
+            $table->integer('price')->nullable();
             $table->date('date');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
